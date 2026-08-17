@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       // once I add my own picture in the assets folder
                       backgroundImage: const AssetImage('assets/profile.jpg'),
                       onBackgroundImageError: (_, __) {},
-                      child: const Icon(Icons.person, size: 50, color: Colors.indigo),
+                      
                     ),
                   ),
                   const SizedBox(height: 12),
