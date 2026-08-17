@@ -4,6 +4,16 @@ void main() {
   runApp(const StudentProfileApp());
 }
 
+// ---------- MY COLOR PALETTE ----------
+// Coffee / cream tones (from lightest to darkest)
+class AppColors {
+  static const cream = Color(0xFFEDE0D0);
+  static const tan = Color(0xFFD9C3A9);
+  static const brown = Color(0xFFA47B5B);
+  static const darkBrown = Color(0xFF6B4A34);
+  static const deepBrown = Color(0xFF3B2A20);
+}
+
 class StudentProfileApp extends StatelessWidget {
   const StudentProfileApp({super.key});
 
@@ -13,8 +23,12 @@ class StudentProfileApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Student Profile',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primaryColor: AppColors.deepBrown,
+        scaffoldBackgroundColor: AppColors.cream,
         fontFamily: 'Roboto',
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: AppColors.darkBrown,
+        ),
       ),
       home: const ProfilePage(),
     );
@@ -48,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onPressed: () {
                 Navigator.pop(context); // close the dialog
               },
-              child: const Text('Close'),
+              child: const Text('Close', style: TextStyle(color: AppColors.darkBrown)),
             ),
           ],
         );
@@ -59,11 +73,12 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F4F8),
+      backgroundColor: AppColors.cream,
       appBar: AppBar(
         title: const Text('My Student Profile'),
         centerTitle: true,
-        backgroundColor: Colors.indigo,
+        backgroundColor: AppColors.deepBrown,
+        foregroundColor: Colors.white,
         elevation: 4,
       ),
       body: SingleChildScrollView(
@@ -77,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.indigo, Colors.indigoAccent],
+                  colors: [AppColors.brown, AppColors.deepBrown],
                 ),
               ),
               child: Column(
@@ -85,14 +100,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   // Profile picture
                   CircleAvatar(
                     radius: 55,
-                    backgroundColor: Colors.white,
+                    backgroundColor: AppColors.cream,
                     child: CircleAvatar(
                       radius: 50,
                       // NOTE: replace with Image.asset('assets/profile.jpg')
                       // once I add my own picture in the assets folder
                       backgroundImage: const AssetImage('assets/profile.jpg'),
                       onBackgroundImageError: (_, __) {},
-                      
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -120,6 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Card(
                 elevation: 3,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -131,41 +146,42 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding: EdgeInsets.fromLTRB(16, 8, 16, 4),
                         child: Row(
                           children: [
-                            Icon(Icons.badge, color: Colors.indigo),
+                            Icon(Icons.badge, color: AppColors.darkBrown),
                             SizedBox(width: 8),
                             Text(
                               'Personal Information',
                               style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
+                                color: AppColors.deepBrown,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const Divider(thickness: 1),
+                      const Divider(thickness: 1, color: AppColors.tan),
                       const ListTile(
-                        leading: Icon(Icons.cake, color: Colors.indigo),
+                        leading: Icon(Icons.cake, color: AppColors.darkBrown),
                         title: Text('Age'),
                         subtitle: Text('20 years old'),
                       ),
                       const ListTile(
-                        leading: Icon(Icons.calendar_month, color: Colors.indigo),
+                        leading: Icon(Icons.calendar_month, color: AppColors.darkBrown),
                         title: Text('Birthday'),
                         subtitle: Text('November 06, 2005'),
                       ),
                       const ListTile(
-                        leading: Icon(Icons.home, color: Colors.indigo),
+                        leading: Icon(Icons.home, color: AppColors.darkBrown),
                         title: Text('Address'),
                         subtitle: Text('Brgy. Marinig, Cabuyao Laguna'),
                       ),
                       const ListTile(
-                        leading: Icon(Icons.sports_esports, color: Colors.indigo),
+                        leading: Icon(Icons.sports_esports, color: AppColors.darkBrown),
                         title: Text('Hobby'),
                         subtitle: Text('Playing mobile games and Reading Manga'),
                       ),
                       const ListTile(
-                        leading: Icon(Icons.school, color: Colors.indigo),
+                        leading: Icon(Icons.school, color: AppColors.darkBrown),
                         title: Text('Course / Program'),
                         subtitle: Text('BS Information Technology'),
                       ),
@@ -184,7 +200,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Text('3rd Year',
                                     style: TextStyle(
                                         fontSize: 15,
-                                        fontWeight: FontWeight.w600)),
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.deepBrown)),
                               ],
                             ),
                             Column(
@@ -196,7 +213,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Text('3IT-B',
                                     style: TextStyle(
                                         fontSize: 15,
-                                        fontWeight: FontWeight.w600)),
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.deepBrown)),
                               ],
                             ),
                           ],
@@ -218,7 +236,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ElevatedButton.icon(
                   onPressed: _showMottoDialog,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
+                    backgroundColor: AppColors.darkBrown,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 12),
@@ -236,11 +254,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                   icon: Icon(
                     _showAcademic ? Icons.visibility_off : Icons.visibility,
-                    color: Colors.indigo,
+                    color: AppColors.darkBrown,
                   ),
                   label: Text(
                     _showAcademic ? 'Hide Academic Info' : 'Show Academic Info',
-                    style: const TextStyle(color: Colors.indigo),
+                    style: const TextStyle(color: AppColors.darkBrown),
                   ),
                 ),
               ],
@@ -255,7 +273,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Card(
                   elevation: 3,
-                  color: Colors.indigo.shade50,
+                  color: AppColors.tan.withOpacity(0.4),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -266,13 +284,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: const [
                         Row(
                           children: [
-                            Icon(Icons.menu_book, color: Colors.indigo),
+                            Icon(Icons.menu_book, color: AppColors.darkBrown),
                             SizedBox(width: 8),
                             Text(
                               'Academic Information',
                               style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
+                                color: AppColors.deepBrown,
                               ),
                             ),
                           ],
@@ -336,7 +355,7 @@ class _AcademicRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: 20, color: Colors.indigo),
+        Icon(icon, size: 20, color: AppColors.darkBrown),
         const SizedBox(width: 10),
         Expanded(
           child: Column(
@@ -348,7 +367,10 @@ class _AcademicRow extends StatelessWidget {
               ),
               Text(
                 value,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.deepBrown),
               ),
             ],
           ),
