@@ -363,11 +363,13 @@ class _AcademicRow extends StatelessWidget {
             children: [
               Text(
                 label,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
+                style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.white),
               ),
               Text(
                 value,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: AppColors.deepBrown),
