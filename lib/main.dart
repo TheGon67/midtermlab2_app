@@ -5,7 +5,6 @@ void main() {
 }
 
 // ---------- MY COLOR PALETTE ----------
-// Coffee / cream tones (from lightest to darkest)
 class AppColors {
   static const cream = Color(0xFFEDE0D0);
   static const tan = Color(0xFFD9C3A9);
@@ -103,8 +102,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundColor: AppColors.cream,
                     child: CircleAvatar(
                       radius: 50,
-                      // NOTE: replace with Image.asset('assets/profile.jpg')
-                      // once I add my own picture in the assets folder
                       backgroundImage: const AssetImage('assets/profile.jpg'),
                       onBackgroundImageError: (_, __) {},
                     ),
@@ -337,7 +334,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-// Small reusable widget I made so I don't have to repeat the same
 // Row + Icon + Text code for every academic info item.
 class _AcademicRow extends StatelessWidget {
   final IconData icon;
